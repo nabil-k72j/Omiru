@@ -1,3 +1,4 @@
+import { BackgroundBeams } from "@/components/shared/BackgroundBeams";
 import Header from "@/components/shared/Header";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -6,6 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <section>
+      <BackgroundBeams className="-z-50"/>
       <Header />
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-xl text-center">
