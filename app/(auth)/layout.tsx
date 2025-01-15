@@ -1,3 +1,4 @@
+import IconBtn from "@/components/shared/IconBtn";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen flex justify-center p-24">{children}</main>
+    <main className="min-h-screen flex justify-center p-24">{children}
+    <IconBtn href="/" icon="material-symbols:arrow-back-rounded" text="Back Home" variant={"ghost"} className="absolute bottom-12 left-12 flex-row-reverse"/>
+    </main>
   );
 }
