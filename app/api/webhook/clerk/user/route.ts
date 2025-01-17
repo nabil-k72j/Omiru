@@ -2,7 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { TUser } from '@/models/user.model'
-import { createUser } from '@/server/user.actions'
+import { createUserSync, updateUserSync } from '@/server/user.actions'
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -57,12 +57,30 @@ export async function POST(req: Request) {
         avatar: evt.data.image_url,
         firstName: evt.data.first_name,
         lastName: evt.data.last_name,
-        lastSignIn: evt.data.last_sign_in_at,
-        userName: evt.data.username
+        userName: evt.data.username,
+        clerkId: evt.data.id
     }
 
     try {
-        await createUser(user)
+        await createUserSync(user)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+        throw new Error(error)
+    }
+  }
+
+  if (eventType === "user.updated") {
+    const user:TUser = {
+        email: evt.data.email_addresses[0].email_address,
+        avatar: evt.data.image_url,
+        firstName: evt.data.first_name,
+        lastName: evt.data.last_name,
+        userName: evt.data.username,
+        clerkId: evt.data.id
+    }
+
+    try {
+        await updateUserSync(user)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         throw new Error(error)
