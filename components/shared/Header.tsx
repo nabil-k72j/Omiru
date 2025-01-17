@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function Header() {
   return (
@@ -11,6 +12,15 @@ export default function Header() {
         </h1>
 
         <div className="hidden sm:flex items-center gap-4">
+          <SignedIn>
+          <Link
+            className={cn(buttonVariants(), "w-full sm:w-auto")}
+            href="/dashboard"
+          >
+            Dashboard
+          </Link>
+          </SignedIn>
+          <SignedOut>
           <Link
             className={cn(buttonVariants(), "w-full sm:w-auto")}
             href="/sign-in"
@@ -28,6 +38,7 @@ export default function Header() {
           >
             Sign Up
           </Link>
+          </SignedOut>
         </div>
       </section>
     </header>
