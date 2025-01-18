@@ -1,3 +1,4 @@
+import SideMenu from "@/components/shared/SideMenu";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen flex justify-center p-24">{children}</main>
+    <main className="flex">
+      <SideMenu />
+      <div className="flex-grow">{children}</div>
+    </main>
   );
 }
