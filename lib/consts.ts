@@ -1,18 +1,27 @@
 
 export const links = [
     {
-        href: "/images",
+        href: "/dashboard/images",
         icon: "material-symbols:perm-media",
-        text: "Media Gallery"
+        text: "Media Gallery",
+        isRestricted: false
     },
     {
-        href: "/editor",
+        href: "/dashboard/editor",
         icon: "oui:editor-code-block",
-        text: "Html editor"
+        text: "Html editor",
+        isRestricted: false
     },
     {
-        href: "/notes",
+        href: "/dashboard/notes",
         icon: "solar:notes-bold",
-        text: "note taker"
+        text: "note taker",
+        isRestricted: false
+    },
+    {
+        href: "/dashboard/admin",
+        icon: "eos-icons:admin",
+        text: "admin page",
+        isRestricted: true
     },
 ]

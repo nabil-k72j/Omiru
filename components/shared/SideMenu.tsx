@@ -1,17 +1,26 @@
 import { cn } from "@/lib/utils";
-import { SignOutButton, UserButton } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
 import { Icon } from "@iconify/react";
 import { links } from "@/lib/consts";
+import { Jersey_15} from "next/font/google";
+import { checkRole } from "@/lib/roles";
+
+const Jer = Jersey_15({
+  weight: ['400']
+});
 
 export default async function SideMenu() {
+
+  const role = await checkRole()
 
   return (
     <div className="flex h-screen w-16 flex-col justify-between border-e">
       <div>
         <div className="inline-flex size-16 items-center justify-center group relative">
-          <UserButton />
+          {/* Temporary Logo */}
+          <span className={cn("text-primary text-2xl sm:text-5xl", Jer.className)}>O</span>
         </div>
 
         <div className="border-t">
@@ -36,7 +45,7 @@ export default async function SideMenu() {
 
             <ul className="space-y-1 border-t pt-4">
               {links.map((link, index) => (
-                <li key={index}>
+                <li key={index} className={cn(link.isRestricted && !["owner", "admin"].includes(role ?? '') ? 'hidden' : 'visible')}>
                   <Link
                     href={link.href}
                     className={cn(
