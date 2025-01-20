@@ -1,15 +1,11 @@
 import { cn } from "@/lib/utils";
-import { SignOutButton } from "@clerk/nextjs";
+import { SignOutButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
 import { Icon } from "@iconify/react";
 import { links } from "@/lib/consts";
-import { Jersey_15} from "next/font/google";
 import { checkRole } from "@/lib/roles";
 
-const Jer = Jersey_15({
-  weight: ['400']
-});
 
 export default async function SideMenu() {
 
@@ -19,8 +15,7 @@ export default async function SideMenu() {
     <div className="flex h-screen w-16 flex-col justify-between border-e">
       <div>
         <div className="inline-flex size-16 items-center justify-center group relative">
-          {/* Temporary Logo */}
-          <span className={cn("text-primary text-2xl sm:text-5xl", Jer.className)}>O</span>
+          <UserButton />
         </div>
 
         <div className="border-t">
