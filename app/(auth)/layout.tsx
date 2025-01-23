@@ -1,5 +1,5 @@
-import IconBtn from "@/components/shared/IconBtn";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Omiru | Auth",
@@ -13,8 +13,14 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen flex justify-center p-24">{children}
-    <IconBtn href="/" icon="material-symbols:arrow-back-rounded" text="Back Home" variant={"ghost"} className="absolute bottom-12 left-12 flex-row-reverse"/>
+    <main className="min-h-screen flex flex-col items-center p-28 space-y-4">
+      <Link
+        href={"/"}
+        className="absolute top-8 left-10 scroll-m-20 text-5xl font-semibold tracking-tight"
+      >
+        <span className="text-primary">O</span>miru
+      </Link>
+      {children}
     </main>
   );
 }
